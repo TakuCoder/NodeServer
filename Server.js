@@ -1,7 +1,10 @@
 var http = require('http');
+var ip = require('ip');
 var querystring = require('querystring');
+var port = 8080;
+var server = http.createServer().listen(port);
 
-var server = http.createServer().listen(8080);
+
 
 server.on('request', function (req, res) {
     if (req.method == 'POST') {
@@ -54,4 +57,4 @@ json+="}";
 	
 });
 
-console.log('Listening on port 8080');
+console.log('Listening on http://'+ip.address()+':'+port);
