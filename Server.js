@@ -22,7 +22,9 @@ server.on('request', function (req, res) {
     req.on('data', function (data) {
         body += data;
     });
-	
+	sleep(10000, function() {
+   // executes after one second, and blocks the thread
+});
 	
     req.on('end', function () {
         var post = querystring.parse(body);
@@ -56,5 +58,11 @@ json+="}";
 	
 	
 });
-
+function sleep(time, callback) {
+    var stop = new Date().getTime();
+    while(new Date().getTime() < stop + time) {
+        ;
+    }
+    callback();
+}
 console.log('Listening on http://'+ip.address()+':'+port);
